@@ -1,0 +1,97 @@
+body{
+background:#0f172a;
+font-family: 'Courier New', monospace;
+margin:0;
+}
+
+main{
+display: flex;
+justify-content: center;
+align-items: center;
+gap:20px;
+padding: 20px;
+min-height: 100vh;
+}
+
+article{
+padding: 30px;
+background:#f8fafc;
+border: 3px solid black;
+}
+
+section{
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+form{
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+//buttons
+button{
+padding: 10px;
+border-radius: 6px;
+border: none;
+font-size: 16px;
+}
+
+.btn-login{
+background:#2563eb;
+color:white;
+font-size: 20px;
+}
+
+.btn-register{
+background:#16a34a;
+color:white;
+font-size: 20px;
+}
+
+
+.sidebar-main{
+display: flex;
+}
+.sidebar{
+display: flex;
+position: fixed;
+left: 0;
+top: 0;
+width: 220px;
+height: 100vh;
+background: #1e293b;
+padding: 20px;
+color: white;
+flex-direction: column;
+align-items:center;
+gap: 20px;
+}
+
+
+a{
+padding: 20px;
+text-decoration: none;
+}
+
+.input-lg{
+flex: 1;
+border: none;
+padding:10px;
+}
+
+.input-group{
+display: flex;
+align-items: center;
+padding:10px;
+margin: 3px;
+border: 2px solid black;
+border-radius: 4px;
+justify-content: space-between;
+}
+
+.input-lg:focus{
+outline:none;
+background: white;
+}

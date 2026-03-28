@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <script src="{% static 'js/login.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/all.css' %} ">
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+</head>
+
+<body>
+
+<main>
+    <article>
+        <h1> Iniciar Sesión</h1>
+        <form method="POST" action="{% url 'login_user' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input class="input-lg" type="text" name="username" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <input class="input-lg" type="password" id="myInput" name="password" placeholder="Contraseña" required>
+                <input class="input-lg" type="checkbox" onclick="Ocultar()">
+            </div>
+            <button class="btn-login" type="submit">Iniciar Sesión</button>
+
+            ¿No tienes Cuenta? <a href="{% url 'register' %}"> Registrar</a>
+            o
+            Continuar como <a href="{% url 'guest' %}">Invitado</a>
+        </form>
+    </article>
+</main>
+
+
+</body>
+
+</html>

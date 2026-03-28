@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    {% block css %}{% endblock %}
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+{% if.request.session
+<body>
+<main class="sidebar-main">
+    <aside class="sidebar">
+        <h3> Menú</h3>
+        <a href="{%url 'controls'%}">Control</a>
+        <a href="{%url 'alarma'%}">Alarma</a>
+        <a href="{%url 'logout_user'%}">Cerrar sesion</a>
+    </aside>
+    <section id="content">
+        {%block content%}{% endblock %}
+    </section>
+</main>
+</body>
+</html>

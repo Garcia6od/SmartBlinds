@@ -1,0 +1,26 @@
+{% extends "login/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/controls.css' %}">
+{% endblock %}
+{% block content %}
+
+<p></p>
+<main class="main-control">
+    <section class="control">
+        <button id="open" class="triangle"></button>
+        <button id="close" class="triangle-down"></button>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <button>1/4</button>
+        <button>1/2</button>
+        <button>3/4</button>
+    </section>
+    <aside id="estado"></aside>
+</main>
+
+<script src=" {% static 'js/controls.js' %}"></script>
+
+{% endblock %}

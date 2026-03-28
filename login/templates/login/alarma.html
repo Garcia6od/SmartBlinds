@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <link rel="stylesheet" href="{% static 'css/modal.css' %} ">
+    <meta charset="UTF-8">
+    <title>Hola</title>
+</head>
+<body>
+<section>
+    <button id="openModalBtn">+</button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close">&times;</span>
+            <form method="POST" action="{% url 'alarma_user' %}">
+                {% csrf_token %}
+                <input type="time" name="hora_open" required>
+                <input type="time" name="hora_close" required>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    {% for alarma in alarmas %}
+    <table style="width:100%">
+        <tr>
+            <th>SE ABRE</th>
+            <th>SE CIERRA</th>
+        </tr>
+        <tr>
+            <td>{{ alarma.hora_open }}</td>
+
+        <td>{{ alarma.hora_close }}</td></tr>
+    </table>
+    {% endfor %}
+</section>
+</body>
+<script src="{% static 'js/modal.js'%}"></script>
+</html>
