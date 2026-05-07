@@ -1,3 +1,6 @@
+from email.policy import HTTP
+from itertools import count
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -63,18 +66,45 @@ def guest(request):
     return redirect('controls')
 
 
+@login_required()
 def alarma_user(request):
     if request.method == 'POST':
         open = request.POST['hora_open']
         close = request.POST['hora_close']
 
+        domingo = request.POST.get('domingo') == 'on'
+        lunes = request.POST.get('lunes') == 'on'
+        martes = request.POST.get('martes') == 'on'
+        miercoles = request.POST.get('miercoles') == 'on'
+        jueves = request.POST.get('jueves') == 'on'
+        viernes = request.POST.get('viernes') == 'on'
+        sabado = request.POST.get('sabado') == 'on'
+
         alarma = Alarma()
         alarma.usuario = request.user
         alarma.hora_open = open
         alarma.hora_close = close
+        alarma.domingo = domingo
+        alarma.lunes = lunes
+        alarma.martes = martes
+        alarma.miercoles = miercoles
+        alarma.jueves = jueves
+        alarma.viernes = viernes
+        alarma.sabado = sabado
         alarma.save()
 
-        alarmas = Alarma.objects.all()
+        return redirect('alarma_view')
 
+
+@login_required()
+def alarma_view(request):
+    alarmas = Alarma.objects.filter(usuario=request.user).order_by("-id")
     context = {'alarmas': alarmas}
-    return render(request, 'login/alarma.html',context)
+    return render(request, 'login/alarma.html', context)
+
+
+@login_required()
+def eliminar_alarma(request, id):
+    alarma = Alarma.objects.get(id=id, usuario=request.user)
+    alarma.delete()
+    return redirect('alarma_view')

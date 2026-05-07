@@ -5,20 +5,23 @@
 {% endblock %}
 {% block content %}
 
+
+
+
 <p></p>
 <main class="main-control">
     <section class="control">
         <button id="open" class="triangle"></button>
         <button id="close" class="triangle-down"></button>
         <label class="switch">
-            <input type="checkbox">
+            <input id="automatic" type="checkbox">
             <span class="slider round"></span>
         </label>
-        <button>1/4</button>
-        <button>1/2</button>
-        <button>3/4</button>
+        <button id="mode1">MODO 1</button>
+        <button id="mode2">MODO 2</button>
+        <button id="mode3">MODO 3</button>
     </section>
-    <aside id="estado"></aside>
+    <aside id="estado"> ESPERANDO INSTRUCCIÓN</aside>
 </main>
 
 <script src=" {% static 'js/controls.js' %}"></script>

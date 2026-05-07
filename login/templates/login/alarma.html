@@ -1,38 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {%load static %}
-    <link rel="stylesheet" href="{% static 'css/modal.css' %} ">
-    <meta charset="UTF-8">
-    <title>Hola</title>
-</head>
-<body>
-<section>
-    <button id="openModalBtn">+</button>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="closeModalBtn" class="close">&times;</span>
-            <form method="POST" action="{% url 'alarma_user' %}">
-                {% csrf_token %}
-                <input type="time" name="hora_open" required>
-                <input type="time" name="hora_close" required>
-                <button type="submit">Guardar</button>
-            </form>
-        </div>
-    </div>
-    {% for alarma in alarmas %}
-    <table style="width:100%">
-        <tr>
-            <th>SE ABRE</th>
-            <th>SE CIERRA</th>
-        </tr>
-        <tr>
-            <td>{{ alarma.hora_open }}</td>
+{% extends "login/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/modal.css' %} ">
+{% endblock %}
+{% block content %}
 
-        <td>{{ alarma.hora_close }}</td></tr>
-    </table>
-    {% endfor %}
-</section>
-</body>
+<main class="main-alarma">
+    <section>
+        <button id="openModalBtn">+</button>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="closeModalBtn" class="close">&times;</span>
+                <form method="POST" action="{% url 'alarma_user' %}">
+                    {% csrf_token %}
+                    <input type="time" name="hora_open" required>
+                    <input type="time" name="hora_close" required>
+                    <div class="div-semana">
+                        <input class="input-semana" type="checkbox" id="Dia7" name="domingo">
+                        <label for="Dia7">D</label>
+                        <input class="input-semana" type="checkbox" id="Dia1" name="lunes">
+                        <label for="Dia1">L</label>
+                        <input class="input-semana" type="checkbox" id="Dia2" name="martes">
+                        <label for="Dia2">M</label>
+                        <input class="input-semana" type="checkbox" id="Dia3" name="miercoles">
+                        <label for="Dia3">M</label>
+                        <input class="input-semana" type="checkbox" id="Dia4" name="jueves">
+                        <label for="Dia4">J</label>
+                        <input class="input-semana" type="checkbox" id="Dia5" name="viernes">
+                        <label for="Dia5">V</label>
+                        <input class="input-semana" type="checkbox" id="Dia6" name="sabado">
+                        <label for="Dia6">S</label>
+                    </div>
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+        </div>
+        {% for alarma in alarmas %}
+        <table class="table-alarma">
+            <tr>
+                <th>SE ABRE</th>
+                <th>SE CIERRA</th>
+                <th> DIAS</th>
+                <th> ACCION</th>
+            </tr>
+            <tr>
+                <td>{{ alarma.hora_open }}</td>
+                <td>{{ alarma.hora_close }}</td>
+
+                <td>
+                    {% if alarma.lunes %} L {% endif %}
+                    {% if alarma.martes %}M {% endif %}
+                    {% if alarma.miercoles %}M {% endif %}
+                    {% if alarma.jueves %}J {% endif %}
+                    {% if alarma.viernes %}V {% endif %}
+                    {% if alarma.sabado %}S {% endif %}
+                    {% if alarma.domingo %}D {% endif %}
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'eliminar_alarma' alarma.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        {% endfor %}
+    </section>
+</main>
 <script src="{% static 'js/modal.js'%}"></script>
-</html>
+{% endblock %}

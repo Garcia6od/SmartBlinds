@@ -1,7 +1,11 @@
-body{
+.main-alarma{
 font-family: 'Courier New', monospace;
+background: #0f1c2e;
+display: flex;
+justify-content: center;
+align-items: center;
 }
-
+/*Ventana Emergente*/
 .modal{
 display: none;
 position: fixed;
@@ -20,17 +24,47 @@ border-radius: 5px;
 width: 80%;
 max-width: 500px;
 position: relative;
-border: 8px solid red;
+border: 8px solid black;
 }
 .close{
 position: absolute;
-top: 10px;
-right: 10px;
+top: 1px;
+right: 3px;
 font-size: 34px;
 cursor: pointer;
 color: red;
 }
 
-table, th, td {
-  border:1px solid black;
+.div-semana{
+display: flex;
+justify-content: center;
+align-items: center;
 }
+
+.input-semana{
+flex:1;
+}
+/*Tabla*/
+table {
+  width: 100%;
+  border: 1px solid;
+  margin-top: 20px;
+}
+
+th {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+  background: red linear-gradient(white, #4a4a4a);
+  background-color: #4a4a4a;
+}
+.table-alarma{
+  width:600px;
+}
+
+
